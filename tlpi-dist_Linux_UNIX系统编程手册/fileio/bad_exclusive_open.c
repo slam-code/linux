@@ -29,7 +29,7 @@
 #include "tlpi_hdr.h"
 
 int
-main(int argc, char *argv[])
+main(int argc, char *argv[])//非线程安全的做法。检查文件与创建文件应该合并为原子操作。可在open()设置O_CREAT和O_EXCL标志
 {
     int fd;
 

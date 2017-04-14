@@ -40,6 +40,8 @@
 
 int
 main(int argc, char *argv[])
+//多线程下使用lseek不是线程安全的。
+//需要将文件偏移量和数据写入操作合并为原子操作:open()加入O_APPEND
 {
     size_t len;
     off_t offset;

@@ -1,0 +1,4 @@
+
+1.pstree
+2.size a.out
+3.段：逻辑划分
