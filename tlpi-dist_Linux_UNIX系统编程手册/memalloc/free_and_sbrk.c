@@ -58,6 +58,21 @@ main(int argc, char *argv[])
         ptr[j] = malloc(blockSize);
         if (ptr[j] == NULL)
             errExit("malloc");
+        if(j%99==0) //sizeof(ptr[j]) ==8 , sizeof(*ptr[j]) ==1
+        	{
+        		/*printf("malloc ptr[j]之前的内存块长度是： %d   ,sizeof(ptr[j])= %d \n", 
+        			*((int* )(&ptr[j]-sizeof(long long))) /1024/8,sizeof(ptr[j]));*/
+/*
+(int)((char *)p-16) 原理就是, 当动态分配时,会在分配的指针地址前16字节,保存一个数来记录分配的大小.
+debug下为16字节,但是release 下不知道是多少字节
+*/
+        		 char *p = ptr[j] ;
+        		 printf("malloc -4 长度: %d\n",  *(int*)((char *)p - 4) / sizeof(*p));
+        		 printf("malloc -8 长度: %d\n",  *(int*)((char *)p - 8) / sizeof(*p));
+        		 printf("malloc -16 长度: %d\n",  *(int*)((char *)p - 16) / sizeof(*p));
+
+
+        	}
     }
 
     printf("Program break is now:           %10p\n", sbrk(0));
