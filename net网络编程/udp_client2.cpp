@@ -31,16 +31,19 @@ int main()
     }
 
     int count=0;
-    char sendline[]="hello world .... ";
+    //char sendline[]="hello world .... ";
+
+    string str1k=string(1000,'hello world ...');
     char recvline[1024];
 
 
     while (count<1000)
     {
 
-        sendto(sockfd,sendline,strlen(sendline),0,(struct sockaddr *)&servaddr,sizeof(servaddr));
+        sendto(sockfd,str1k.c_str(),str1k.size(),0,(struct sockaddr *)&servaddr,sizeof(servaddr));
 
         int n=recvfrom(sockfd,recvline,1024,0,NULL,NULL);
+        //recvfrom存在阻塞的可能性，如何提高系统的可靠性？select,poll,epoll。
         cout<<"[recv]:"<<recvline<<" "<<count<<endl;
         ++count;
     }

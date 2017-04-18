@@ -25,4 +25,5 @@ aux_source_directory(. DIR_SRCS)
 
 add_executable( udp_client udp_client.cpp)
 add_executable(udp_server udp_server.cpp)
+add_executable(tcp_server tcp_server.cpp)
 #add_executable(wy2 wy2.cpp)
